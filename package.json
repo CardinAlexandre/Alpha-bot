@@ -4,20 +4,21 @@
   "description": "Crypto bot",
   "main": "./src/index.js",
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.4",
     "cryptiles": "^4.1.2",
     "debug": "^3.1.0",
     "discord.js": "^11.6.4",
-    "plotly": "^1.0.6",
-    "turndown": "^4.0.2",
-    "unix-timestamp-transform": "0.0.5",
+    "dotenv": "^10.0.0",
     "eslint": "^5.14.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "jest": "^24.9.0",
     "nodemon": "^1.17.3",
-    "supertest": "^3.0.0"
+    "plotly": "^1.0.6",
+    "supertest": "^3.0.0",
+    "turndown": "^4.0.2",
+    "unix-timestamp-transform": "0.0.5"
   },
   "scripts": {
     "start": "node index.js",

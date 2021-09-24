@@ -5,12 +5,12 @@ const config = require('./src/config.json')
 const crypto = require('./src/commands/crypto')
 const coins = require('./src/commands/coins')
 const help = require('./src/commands/help')
-const token = require('./src/config.json').token
 const { log } = require('debug')
+require('dotenv').config()
 
 const client = new Discord.Client()
 
-client.login(token)
+client.login(process.env.TOKEN)
 
 client.on('ready', () => {
   console.log(`ETH has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`)
