@@ -37,16 +37,16 @@ client.on('message', async (message) => {
         sign = ''
       }
       client.user.setActivity(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)', { type: 'WATCHING' })
-      console.log(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)');
+      // console.log(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)');
       user.guild.me.setNickname('ETH ' + price.toString() + ' USD')
-      console.log('ETH ' + price.toString() + ' USD');
+      // console.log('ETH ' + price.toString() + ' USD');
       if (pourcentOneDay > 0) {
         role.setColor('#1AEF2A');
       } else {
         role.setColor('#EF1A1A');
       }
     }
-    setInterval(() => getEthPrice(), 2000)
+    setInterval(() => getEthPrice(), 5000)
 
     switch (command) {
       case 'coins':
