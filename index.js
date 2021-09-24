@@ -38,11 +38,13 @@ client.on('message', async (message) => {
       }
       client.user.setActivity(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)', { type: 'WATCHING' })
       // console.log(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)');
-      user.guild.me.setNickname('ETH ' + price.toString() + ' USD')
+      user.guild.me.setNickname('ETH ' + graph + price.toString() + ' USD')
       // console.log('ETH ' + price.toString() + ' USD');
       if (pourcentOneDay > 0) {
+        graph = '📈'
         role.setColor('#1AEF2A');
       } else {
+        graph = '📉'
         role.setColor('#EF1A1A');
       }
     }
