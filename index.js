@@ -1,7 +1,6 @@
 const Discord = require('discord.js')
 const axios = require('axios')
 const debug = require('debug')('index')
-const config = require('./src/config.json')
 const crypto = require('./src/commands/crypto')
 const coins = require('./src/commands/coins')
 const help = require('./src/commands/help')
@@ -14,13 +13,13 @@ client.login(process.env.TOKEN)
 
 client.on('ready', () => {
   console.log(`ETH has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`)
-  channel = client.channels.find("id", "787665385943597056")
+  channel = client.channels.get('787665385943597056')
   channel.send('!eth')
 })
 
 client.on('message', async (message) => {
-  if (message.content.substring(0, config.prefix.length) === config.prefix) {
-    const command = message.content.slice(config.prefix.length)
+  if (message.content.substring(0, process.env.PREFIX.length) === process.env.PREFIX) {
+    const command = message.content.slice(process.env.PREFIX.length)
 
     let res = await axios.get('https://api.alternative.me/v2/ticker/1027/?convert=PLN');
 
