@@ -48,7 +48,7 @@ client.on('message', async (message) => {
         role.setColor('#EF1A1A');
       }
     }
-    setInterval(() => getEthPrice(), 5000)
+    setInterval(() => getEthPrice(), 10000)
 
     switch (command) {
       case 'coins':
