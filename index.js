@@ -43,7 +43,7 @@ client.on('message', async (message) => {
       if (res > 0) {
         sign = '+'
       } else {
-        sign = '-'
+        sign = ''
       }
       client.user.setActivity(sign + res.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)', { type: 'WATCHING' })
       user.guild.me.setNickname('ETH ' + price + ' USD')
