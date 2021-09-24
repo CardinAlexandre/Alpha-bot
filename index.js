@@ -36,17 +36,17 @@ client.on('message', async (message) => {
       } else {
         sign = ''
       }
-      client.user.setActivity(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)', { type: 'WATCHING' })
-      // console.log(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)');
-      user.guild.me.setNickname('ETH ' + graph + price.toString() + ' USD')
-      // console.log('ETH ' + price.toString() + ' USD');
       if (pourcentOneDay > 0) {
-        graph = '📈'
+        graph = '↗️'
         role.setColor('#1AEF2A');
       } else {
-        graph = '📉'
+        graph = '↘️'
         role.setColor('#EF1A1A');
       }
+      client.user.setActivity(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)', { type: 'WATCHING' })
+      // console.log(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)');
+      user.guild.me.setNickname('ETH ' + graph + ' ' + price.toString() + ' USD')
+      // console.log('ETH ' + price.toString() + ' USD');
     }
     setInterval(() => getEthPrice(), 10000)
 
