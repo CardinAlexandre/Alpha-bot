@@ -49,8 +49,8 @@ client.on('message', async (message) => {
     }
     getEthPrice()
     getMovementPrice()
-    setInterval(() => getEthPrice(), 1800000)
-    setInterval(() => getMovementPrice(), 1800000)
+    setInterval(() => getEthPrice(), 10000)
+    setInterval(() => getMovementPrice(), 10000)
 
     switch (command) {
       case 'coins':
