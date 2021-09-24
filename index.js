@@ -12,10 +12,10 @@ const client = new Discord.Client()
 
 client.login(token)
 
-client.on('ready', async function () {
+client.on('ready', () => {
   console.log(`ETH has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`)
   channel = client.channels.find("id", "787665385943597056")
-  await channel.send('!eth')
+  channel.send('!eth')
 })
 
 client.on('message', async (message) => {
