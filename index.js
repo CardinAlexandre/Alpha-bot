@@ -27,7 +27,7 @@ client.on('message', async (message) => {
 
       let user = message.guild.members.get(client.user.id)
       const role = message.guild.roles.get('890416769708224543')
-      const price = parseInt(resETHprice.data.price).toFixed(2);
+      const price = parseInt(resETHprice.data.price).toFixed(0);
       const pourcentOneDay = res.data.data['1027'].quotes.USD.percentage_change_24h.toFixed(2)
       pourcentage = pourcentOneDay / 100;
       result = price * pourcentage
@@ -38,8 +38,8 @@ client.on('message', async (message) => {
       }
       client.user.setActivity(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)', { type: 'WATCHING' })
       console.log(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)');
-      user.guild.me.setNickname('ETH ' + price + ' USD')
-      console.log('ETH ' + price + ' USD');
+      user.guild.me.setNickname('ETH ' + price.toString() + ' USD')
+      console.log('ETH ' + price.toString() + ' USD');
       if (pourcentOneDay > 0) {
         role.setColor('#1AEF2A');
       } else {
