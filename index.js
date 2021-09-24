@@ -21,36 +21,32 @@ client.on('message', async (message) => {
   if (message.content.substring(0, process.env.PREFIX.length) === process.env.PREFIX) {
     const command = message.content.slice(process.env.PREFIX.length)
 
-    let res = await axios.get('https://api.alternative.me/v2/ticker/1027/?convert=PLN');
+    let getEthPrice = async () => {
+      let resETHprice = await axios.get('https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT');
+      let res = await axios.get('https://api.alternative.me/v2/ticker/1027/?convert=PLN');
 
-    let user = message.guild.members.get(client.user.id)
-    const role = message.guild.roles.get('890416769708224543')
-    const price = res.data.data['1027'].quotes.USD.price;
-    const pourcentOneDay = res.data.data['1027'].quotes.USD.percentage_change_24h.toFixed(2)
-
-    let getMovementPrice = () => {
+      let user = message.guild.members.get(client.user.id)
+      const role = message.guild.roles.get('890416769708224543')
+      const price = parseInt(resETHprice.data.price).toFixed(2);
+      const pourcentOneDay = res.data.data['1027'].quotes.USD.percentage_change_24h.toFixed(2)
+      pourcentage = pourcentOneDay / 100;
+      result = price * pourcentage
+      if (result > 0) {
+        sign = '+'
+      } else {
+        sign = ''
+      }
+      client.user.setActivity(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)', { type: 'WATCHING' })
+      console.log(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)');
+      user.guild.me.setNickname('ETH ' + price + ' USD')
+      console.log('ETH ' + price + ' USD');
       if (pourcentOneDay > 0) {
         role.setColor('#1AEF2A');
       } else {
         role.setColor('#EF1A1A');
       }
     }
-
-    let getEthPrice = () => {
-      pourcentage = pourcentOneDay / 100;
-      res = price * pourcentage
-      if (res > 0) {
-        sign = '+'
-      } else {
-        sign = ''
-      }
-      client.user.setActivity(sign + res.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)', { type: 'WATCHING' })
-      user.guild.me.setNickname('ETH ' + price + ' USD')
-    }
-    getEthPrice()
-    getMovementPrice()
-    setInterval(() => getEthPrice(), 10000)
-    setInterval(() => getMovementPrice(), 10000)
+    setInterval(() => getEthPrice(), 2000)
 
     switch (command) {
       case 'coins':
