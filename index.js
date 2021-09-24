@@ -44,9 +44,9 @@ client.on('message', async (message) => {
         role.setColor('#EF1A1A');
       }
       client.user.setActivity(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)', { type: 'WATCHING' })
-      // console.log(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)');
+      console.log(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)');
       user.guild.me.setNickname('ETH ' + graph + ' ' + price.toString() + ' USD')
-      // console.log('ETH ' + price.toString() + ' USD');
+      console.log('ETH ' + price.toString() + ' USD');
     }
     setInterval(() => getEthPrice(), 10000)
 
