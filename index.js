@@ -26,29 +26,40 @@ client.on('message', async (message) => {
       let res = await axios.get('https://api.alternative.me/v2/ticker/1027/?convert=PLN');
 
       let user = message.guild.members.get(client.user.id)
-      const role = message.guild.roles.get('890416769708224543')
+      // const role = message.guild.roles.find(role => role.name === "ETH");
+
+      const role = message.guild.roles.get('890416769708224543');
+      console.log(role);
       const price = parseInt(resETHprice.data.price).toFixed(0);
       const pourcentOneDay = res.data.data['1027'].quotes.USD.percentage_change_24h.toFixed(2)
       pourcentage = pourcentOneDay / 100;
       result = price * pourcentage
+      if (!role) { return message.reply("No role found"); }
       if (result > 0) {
         sign = '+'
       } else {
         sign = ''
       }
+      let color
       if (pourcentOneDay > 0) {
-        graph = '↗️'
-        role.setColor('#1AEF2A');
+        graph = '↗️';
+        if (message.member.displayHexColor != '#1aef2a') {
+          role.setColor('#1aef2a');
+        }
       } else {
-        graph = '↘️'
-        role.setColor('#EF1A1A');
+        graph = '↘️';
+        if (message.member.displayHexColor != '#ef1a1a') {
+          role.setColor('#ef1a1a');
+        }
       }
+      role.setColor(message.member.displayHexColor)
+      console.log(message.member.displayHexColor);
       client.user.setActivity(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)', { type: 'WATCHING' })
       console.log(sign + result.toFixed(2) + '$ ' + pourcentOneDay + '% (24h)');
       user.guild.me.setNickname('ETH ' + graph + ' ' + price.toString() + ' USD')
       console.log('ETH ' + price.toString() + ' USD');
     }
-    setInterval(() => getEthPrice(), 10000)
+    setInterval(() => getEthPrice(), 60000)
 
     switch (command) {
       case 'coins':
